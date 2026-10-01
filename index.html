@@ -1,110 +1,80 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#020713"><title>Verito Gagliardi | Le Petit Peuple de la Montagne</title><meta name="description" content="Verito Gagliardi · Le Petit Peuple de la Montagne · Duendes de colección, piezas únicas hechas a mano."><meta property="og:title" content="Verito Gagliardi | Le Petit Peuple de la Montagne"><meta property="og:description" content="Duendes de colección, obras hiperrealistas y de fantasía. Piezas únicas hechas a mano."><style>
-:root{
-  --gold:#e9c476;
-  --ink:#020713;
-  --text:#f7e8c4;
-  --muted:#d7c3a0;
-  --panel:#080b11;
-}
+:root{--gold:#e9c476;--ink:#020713;--text:#f7e8c4;--muted:#d7c3a0;--line:rgba(233,196,118,.2)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--ink);
-  color:var(--text);
-  font-family:Georgia,'Times New Roman',serif;
-  overflow-x:hidden;
-}
+body{margin:0;background:var(--ink);color:var(--text);font-family:Georgia,'Times New Roman',serif;overflow-x:hidden}
 a{color:inherit}
-button{font:inherit}
+button,input{font:inherit}
 
-/* ===== PORTADA RESPONSIVE ===== */
+/* CABECERA LIMPIA: no usa el texto horneado del fondo */
+.site-header{
+  width:100%;
+  background:#020713;
+  border-bottom:1px solid rgba(233,196,118,.13);
+  padding:16px 22px 14px;
+  text-align:center;
+  position:relative;
+  z-index:40;
+}
+.site-brand{
+  color:#f4d89f;
+  font-size:clamp(24px,3vw,42px);
+  font-weight:500;
+  line-height:1;
+  letter-spacing:.025em;
+}
+.site-brand-sub{
+  margin-top:7px;
+  color:#cdb990;
+  font:700 clamp(9px,1vw,12px)/1 Arial,sans-serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+/* PORTADA. La parte superior original de la imagen queda FUERA del encuadre */
 .hero{
   width:100%;
   max-width:1280px;
   margin:0 auto;
   background:#020713;
-  position:relative;
-  overflow:visible;
 }
 .stage{
   position:relative;
-  height:clamp(330px,40vw,500px);
+  width:100%;
+  height:clamp(300px,38vw,480px);
   overflow:hidden;
-  isolation:isolate;
   background:#020713;
 }
 #forest{
   position:absolute;
+  z-index:0;
   left:0;
-  top:-105px;
+  top:-14%;
   width:100%;
-  height:calc(100% + 105px);
+  height:128%;
   object-fit:cover;
   object-position:center center;
   opacity:0;
   transition:opacity .25s ease;
-  z-index:0;
 }
 #forest.ready{opacity:1}
-
-/* Logo nuevo, independiente de la imagen horneada */
-.brand-overlay{
-  position:absolute;
-  z-index:20;
-  top:18px;
-  left:22px;
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-  pointer-events:none;
-  text-shadow:0 3px 18px rgba(0,0,0,.75);
-}
-.brand-overlay strong{
-  color:#f5dfac;
-  font-size:clamp(24px,3vw,44px);
-  font-weight:500;
-  line-height:.95;
-}
-.brand-overlay span{
-  color:#d8c29a;
-  font:700 clamp(10px,1vw,14px)/1.1 Arial,sans-serif;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-}
-
-.fireflies{
-  position:absolute;
-  inset:0;
-  z-index:5;
-  pointer-events:none;
-}
-.firefly{
-  position:absolute;
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:#ffe091;
-  box-shadow:0 0 9px #ffe091,0 0 25px rgba(255,185,72,.6);
-  animation:blink 3s infinite;
-}
-.firefly.big{width:8px;height:8px}
-.firefly.tiny{width:3px;height:3px}
+.fireflies{position:absolute;inset:0;z-index:4;pointer-events:none}
+.firefly{position:absolute;width:5px;height:5px;border-radius:50%;background:#ffe091;box-shadow:0 0 9px #ffe091,0 0 25px rgba(255,185,72,.6);animation:blink 3s infinite}
+.firefly.big{width:8px;height:8px}.firefly.tiny{width:3px;height:3px}
 @keyframes blink{0%,100%{opacity:.18}45%{opacity:1}72%{opacity:.35}}
 
-/* Foto grupal superpuesta, igual concepto en todas las pantallas */
+/* FOTO GRUPAL */
 .artist-group-photo{
   position:relative;
-  z-index:25;
-  width:min(92%,1080px);
-  height:clamp(300px,34vw,430px);
-  margin:-72px auto 0;
+  z-index:20;
+  width:min(94%,1080px);
+  height:clamp(300px,33vw,420px);
+  margin:-46px auto 0;
   overflow:hidden;
   border:1px solid rgba(233,196,118,.28);
-  border-bottom:0;
-  border-radius:22px 22px 0 0;
+  border-radius:20px 20px 0 0;
   background:#05070b;
-  box-shadow:0 -12px 38px rgba(0,0,0,.28),0 24px 60px rgba(0,0,0,.42);
+  box-shadow:0 20px 55px rgba(0,0,0,.38);
 }
 .artist-group-photo img{
   display:block;
@@ -114,455 +84,125 @@ button{font:inherit}
   object-position:center 20%;
   filter:contrast(1.07) saturate(1.02) brightness(1.02);
 }
-.group-fallback{
-  display:none;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  padding:8px;
-}
-.group-fallback img{
-  width:100%;
-  aspect-ratio:1;
-  object-fit:cover;
-  border-radius:12px;
-}
-
+.group-fallback{display:none;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px}
+.group-fallback img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px}
 .artist-title{
-  width:min(92%,1080px);
+  width:min(94%,1080px);
   margin:0 auto;
-  padding:10px 14px 9px;
+  padding:12px 14px 10px;
   text-align:center;
   background:linear-gradient(180deg,#07101a,#020713);
-  border:1px solid rgba(233,196,118,.18);
+  border:1px solid var(--line);
   border-top:0;
 }
-.artist-title h2{
-  margin:0;
-  color:#f4d89f;
-  font-size:clamp(25px,2.6vw,38px);
-  font-weight:500;
-  line-height:1;
-}
-.artist-title p{
-  margin:5px 0 0;
-  color:#f7e8c4;
-  font:700 clamp(10px,1vw,13px)/1 Arial,sans-serif;
-  letter-spacing:.13em;
-  text-transform:uppercase;
-}
+.artist-title h2{margin:0;color:#f4d89f;font-size:clamp(25px,2.6vw,38px);font-weight:500;line-height:1}
+.artist-title p{margin:6px 0 0;color:#f7e8c4;font:700 clamp(10px,1vw,13px)/1 Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase}
 
-/* ===== TIENDA ===== */
+/* TIENDA */
 .catalog-section{
-  position:relative;
-  z-index:2;
-  padding:48px clamp(16px,5vw,72px) 60px;
-  background:
-    radial-gradient(circle at 50% 0,rgba(92,76,48,.12),transparent 34%),
-    linear-gradient(180deg,#07090d,#020308 78%);
-  border-top:1px solid rgba(214,177,105,.22);
+  padding:46px clamp(14px,5vw,70px) 58px;
+  background:radial-gradient(circle at 50% 0,rgba(92,76,48,.12),transparent 34%),linear-gradient(180deg,#07090d,#020308 78%);
+  border-top:1px solid rgba(214,177,105,.22)
 }
-.catalog-section h2{
-  text-align:center;
-  margin:0 0 10px;
-  color:#f7dfab;
-  font:800 clamp(28px,4vw,54px)/1.05 Arial,sans-serif;
-  letter-spacing:.10em;
-}
-.catalog-section .sub{
-  max-width:900px;
-  margin:0 auto 28px;
-  text-align:center;
-  color:#d7c3a0;
-  line-height:1.65;
-}
-.shop-tools{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-  margin:0 auto 30px;
-}
-.filter{
-  border:1px solid rgba(233,196,118,.34);
-  background:#090a0d;
-  color:#d8c7a6;
-  border-radius:999px;
-  padding:11px 18px;
-  font:700 12px/1 Arial,sans-serif;
-  letter-spacing:.12em;
-  cursor:pointer;
-}
-.filter:hover,.filter.active{
-  background:#e9c476;
-  color:#17120a;
-  border-color:#e9c476;
-}
-.catalog-grid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:22px;
-  max-width:1360px;
-  margin:auto;
-}
-.product-card{
-  overflow:hidden;
-  border:1px solid rgba(205,169,101,.25);
-  border-radius:18px;
-  background:linear-gradient(180deg,#0d0f13,#07080b);
-  box-shadow:0 18px 50px rgba(0,0,0,.4);
-  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
-  cursor:pointer;
-}
-.product-card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(224,188,116,.72);
-  box-shadow:0 28px 70px rgba(0,0,0,.56);
-}
-.photo-wrap{
-  position:relative;
-  aspect-ratio:4/5;
-  background:#030405;
-  overflow:hidden;
-}
-.photo-wrap img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-  object-position:center 22%;
-  filter:contrast(1.09) saturate(1.015) brightness(1.02);
-  transform:scale(1.02);
-  transition:transform .35s ease;
-}
-.product-card:hover .photo-wrap img{transform:scale(1.05)}
-.photo-count,.promo-badge{
-  position:absolute;
-  top:12px;
-  padding:7px 10px;
-  border-radius:999px;
-  font:700 10px/1 Arial,sans-serif;
-  letter-spacing:.08em;
-}
-.photo-count{right:12px;background:rgba(0,0,0,.72);color:#fff}
-.promo-badge{left:12px;background:#cda45e;color:#17110a}
-.product-info{padding:18px}
-.product-meta{
-  color:#cdb17b;
-  margin-bottom:9px;
-  font:700 10px/1.4 Arial,sans-serif;
-  letter-spacing:.16em;
-}
-.product-info h3{
-  margin:0 0 10px;
-  color:#f5e6c5;
-  font:700 clamp(18px,1.6vw,24px)/1.15 Arial,sans-serif;
-}
-.product-info p{
-  margin:0;
-  color:#cfc7b8;
-  font:400 14px/1.5 Arial,sans-serif;
-}
-.price-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-top:18px;
-}
-.price{color:#f0c979;font:800 20px/1 Arial,sans-serif}
-.actions{display:flex;gap:8px;flex-wrap:wrap}
-.btn{
-  border:0;
-  border-radius:10px;
-  background:#e9c476;
-  color:#21170b;
-  padding:11px 14px;
-  font:800 12px/1 Arial,sans-serif;
-  letter-spacing:.04em;
-  cursor:pointer;
-}
-.btn.secondary{
-  border:1px solid rgba(233,196,118,.36);
-  background:transparent;
-  color:#f4ddb0;
-}
+.catalog-section h2{text-align:center;margin:0 0 10px;color:#f7dfab;font:800 clamp(27px,4vw,52px)/1.05 Arial,sans-serif;letter-spacing:.08em}
+.catalog-section .sub{max-width:900px;margin:0 auto 28px;text-align:center;color:#d7c3a0;line-height:1.6}
+.shop-tools{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 30px}
+.filter{border:1px solid rgba(233,196,118,.34);background:#090a0d;color:#d8c7a6;border-radius:999px;padding:11px 18px;font:700 12px/1 Arial,sans-serif;letter-spacing:.12em;cursor:pointer}
+.filter:hover,.filter.active{background:#e9c476;color:#17120a;border-color:#e9c476}
+.catalog-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;max-width:1360px;margin:auto}
+.product-card{overflow:hidden;border:1px solid rgba(205,169,101,.25);border-radius:18px;background:linear-gradient(180deg,#0d0f13,#07080b);box-shadow:0 18px 50px rgba(0,0,0,.4);transition:.22s;cursor:pointer}
+.product-card:hover{transform:translateY(-4px);border-color:rgba(224,188,116,.72)}
+.photo-wrap{position:relative;aspect-ratio:4/5;background:#030405;overflow:hidden}
+.photo-wrap img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 22%;filter:contrast(1.08) saturate(1.015);transition:transform .3s}
+.product-card:hover .photo-wrap img{transform:scale(1.035)}
+.photo-count,.promo-badge{position:absolute;top:12px;padding:7px 10px;border-radius:999px;font:700 10px/1 Arial,sans-serif;letter-spacing:.08em}
+.photo-count{right:12px;background:rgba(0,0,0,.72);color:#fff}.promo-badge{left:12px;background:#cda45e;color:#17110a}
+.product-info{padding:18px}.product-meta{color:#cdb17b;margin-bottom:9px;font:700 10px/1.4 Arial,sans-serif;letter-spacing:.14em}
+.product-info h3{margin:0 0 10px;color:#f5e6c5;font:700 clamp(18px,1.6vw,24px)/1.15 Arial,sans-serif}
+.product-info p{margin:0;color:#cfc7b8;font:400 14px/1.5 Arial,sans-serif}
+.price-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px}
+.price{color:#f0c979;font:800 20px/1 Arial,sans-serif}.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:0;border-radius:10px;background:#e9c476;color:#21170b;padding:11px 14px;font:800 12px/1 Arial,sans-serif;letter-spacing:.04em;cursor:pointer}
+.btn.secondary{border:1px solid rgba(233,196,118,.36);background:transparent;color:#f4ddb0}
 
-/* ===== BIO / FOOTER ===== */
-.artist-bio{
-  max-width:1180px;
-  margin:28px auto 52px;
-  padding:30px 20px;
-  text-align:center;
-  background:linear-gradient(180deg,#07101a,#02050a);
-  border:1px solid rgba(233,196,118,.18);
-}
-.artist-bio h2{
-  margin:0;
-  color:#f4d89f;
-  font-size:clamp(26px,3.2vw,42px);
-  font-weight:500;
-}
-.artist-bio h3{
-  margin:16px 0 10px;
-  color:#f4d89f;
-  font-size:clamp(18px,2vw,24px);
-}
-.artist-bio p{
-  margin:6px 0;
-  color:#e8dcc5;
-  font-size:clamp(14px,1.4vw,18px);
-}
-.footer{
-  padding:44px clamp(18px,6vw,80px);
-  background:#02040a;
-  border-top:1px solid rgba(233,196,118,.18);
-}
-.footer-grid{
-  display:grid;
-  grid-template-columns:1.2fr 1fr 1fr 1fr;
-  gap:22px;
-}
-.footer h3{margin:0 0 10px;color:#f4d89f;font-weight:500}
-.footer p,.footer li,.footer a{color:var(--muted);font-size:14px;line-height:1.6}
-.footer ul{list-style:none;margin:0;padding:0}
-.copy{
-  text-align:center;
-  color:#a9946f;
-  border-top:1px solid rgba(233,196,118,.12);
-  margin-top:20px;
-  padding-top:18px;
-}
+/* BIO Y FOOTER */
+.artist-bio{max-width:1180px;margin:28px auto 52px;padding:30px 20px;text-align:center;background:linear-gradient(180deg,#07101a,#02050a);border:1px solid var(--line)}
+.artist-bio h2{margin:0;color:#f4d89f;font-size:clamp(26px,3.2vw,42px);font-weight:500}
+.artist-bio h3{margin:16px 0 10px;color:#f4d89f;font-size:clamp(18px,2vw,24px)}
+.artist-bio p{margin:6px 0;color:#e8dcc5;font-size:clamp(14px,1.4vw,18px)}
+.footer{padding:42px clamp(18px,6vw,80px);background:#02040a;border-top:1px solid var(--line)}
+.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:22px}
+.footer h3{margin:0 0 10px;color:#f4d89f;font-weight:500}.footer p,.footer li,.footer a{color:var(--muted);font-size:14px;line-height:1.6}
+.footer ul{list-style:none;margin:0;padding:0}.copy{text-align:center;color:#a9946f;border-top:1px solid rgba(233,196,118,.12);margin-top:20px;padding-top:18px}
 
-/* ===== MODAL ===== */
-.modal-shell{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:22px;
-  background:rgba(1,5,14,.84);
-  backdrop-filter:blur(10px);
-}
-.modal-shell.open{display:flex}
-.modal{
-  position:relative;
-  width:min(880px,94vw);
-  max-height:90vh;
-  overflow:auto;
-  padding:28px 24px 24px;
-  border-radius:24px;
-  border:1px solid rgba(233,196,118,.44);
-  background:linear-gradient(170deg,rgba(22,17,20,.98),rgba(7,12,22,.99));
-  box-shadow:0 30px 90px rgba(0,0,0,.7);
-}
-.close-modal{
-  position:absolute;
-  right:14px;
-  top:14px;
-  width:40px;
-  height:40px;
-  border:1px solid rgba(233,196,118,.28);
-  border-radius:50%;
-  background:rgba(255,255,255,.05);
-  color:#f7e8c4;
-  font-size:24px;
-  cursor:pointer;
-}
-.modal-kicker{
-  text-align:center;
-  text-transform:uppercase;
-  letter-spacing:.23em;
-  font-size:11px;
-  color:#c9a86a;
-}
-.modal h2{
-  text-align:center;
-  font-weight:500;
-  font-size:clamp(28px,5vw,44px);
-  color:#f7dfab;
-}
-.modal p{
-  max-width:680px;
-  margin:0 auto 14px;
-  text-align:center;
-  line-height:1.7;
-  color:#ebdec4;
-}
-.searchbox{
-  display:flex;
-  gap:10px;
-  max-width:560px;
-  margin:12px auto;
-}
-.searchbox input{
-  flex:1;
-  border:1px solid rgba(233,196,118,.42);
-  border-radius:999px;
-  background:rgba(255,255,255,.06);
-  color:#ffe3aa;
-  padding:12px 14px;
-}
-.searchbox button{
-  border:0;
-  border-radius:999px;
-  background:linear-gradient(#f3d08a,#c99340);
-  color:#261707;
-  font-weight:700;
-  padding:12px 16px;
-}
-.gallery-main{
-  max-width:720px;
-  margin:0 auto 12px;
-  aspect-ratio:4/3;
-  border-radius:18px;
-  overflow:hidden;
-  background:#040507;
-}
-.gallery-main img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-  filter:contrast(1.07) saturate(1.015) brightness(1.02);
-}
-.gallery-thumbs{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:8px;
-  max-width:720px;
-  margin:0 auto 18px;
-}
-.gallery-thumb{
-  border:1px solid rgba(233,196,118,.24);
-  border-radius:10px;
-  overflow:hidden;
-  background:#06070a;
-  padding:0;
-  cursor:pointer;
-  aspect-ratio:1;
-}
-.gallery-thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center 22%;
-  display:block;
-}
+/* MODAL / GALERÍA */
+.modal-shell{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(1,5,14,.84);backdrop-filter:blur(10px)}
+.modal-shell.open{display:flex}.modal{position:relative;width:min(880px,94vw);max-height:90vh;overflow:auto;padding:28px 24px 24px;border-radius:24px;border:1px solid rgba(233,196,118,.44);background:linear-gradient(170deg,rgba(22,17,20,.98),rgba(7,12,22,.99));box-shadow:0 30px 90px rgba(0,0,0,.7)}
+.close-modal{position:absolute;right:14px;top:14px;width:40px;height:40px;border:1px solid rgba(233,196,118,.28);border-radius:50%;background:rgba(255,255,255,.05);color:#f7e8c4;font-size:24px;cursor:pointer}
+.modal-kicker{text-align:center;text-transform:uppercase;letter-spacing:.23em;font-size:11px;color:#c9a86a}.modal h2{text-align:center;font-weight:500;font-size:clamp(28px,5vw,44px);color:#f7dfab}
+.modal p{max-width:680px;margin:0 auto 14px;text-align:center;line-height:1.7;color:#ebdec4}
+.searchbox{display:flex;gap:10px;max-width:560px;margin:12px auto}.searchbox input{flex:1;border:1px solid rgba(233,196,118,.42);border-radius:999px;background:rgba(255,255,255,.06);color:#ffe3aa;padding:12px 14px}
+.searchbox button{border:0;border-radius:999px;background:linear-gradient(#f3d08a,#c99340);color:#261707;font-weight:700;padding:12px 16px}
+.gallery-main{max-width:720px;margin:0 auto 12px;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:#040507}.gallery-main img{width:100%;height:100%;object-fit:contain;display:block}
+.gallery-thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-width:720px;margin:0 auto 18px}.gallery-thumb{border:1px solid rgba(233,196,118,.24);border-radius:10px;overflow:hidden;background:#06070a;padding:0;cursor:pointer;aspect-ratio:1}.gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* ===== CONTROLES FLOTANTES ===== */
-.music-toggle,.cart-dock{
-  position:fixed;
-  bottom:18px;
-  z-index:96;
-  border:1px solid rgba(233,196,118,.5);
-  border-radius:999px;
-  background:rgba(5,7,11,.9);
-  color:#f2d9a6;
-  padding:11px 15px;
-  font:700 12px/1 Arial,sans-serif;
-  letter-spacing:.05em;
-  backdrop-filter:blur(8px);
-  cursor:pointer;
-  box-shadow:0 10px 30px rgba(0,0,0,.28);
-}
-.music-toggle{left:18px;min-width:96px}
-.music-toggle.playing{background:rgba(38,29,14,.92);color:#ffe3aa}
-.cart-dock{right:18px}
-.cart-count{
-  display:inline-flex;
-  min-width:22px;
-  height:22px;
-  margin-left:7px;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  background:#e9c476;
-  color:#261707;
-}
-.cart-panel{
-  position:fixed;
-  right:18px;
-  bottom:76px;
-  width:min(380px,calc(100vw - 36px));
-  z-index:95;
-  display:none;
-  border:1px solid rgba(233,196,118,.45);
-  border-radius:22px;
-  background:linear-gradient(160deg,rgba(17,13,16,.98),rgba(5,9,17,.98));
-  box-shadow:0 28px 78px rgba(0,0,0,.65);
-  padding:18px;
-}
-.cart-panel.open{display:block}
-.cart-line{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  border-bottom:1px solid rgba(233,196,118,.12);
-  padding:8px 0;
-  color:#d9c19b;
-  font-size:14px;
-}
-.cart-action{
-  border:1px solid rgba(233,196,118,.35);
-  border-radius:999px;
-  background:rgba(233,196,118,.1);
-  color:#f5e0b4;
-  padding:9px 12px;
-  cursor:pointer;
-  text-decoration:none;
-  font-size:13px;
-}
-.cart-action.primary{
-  background:linear-gradient(#f3d08a,#c99340);
-  color:#261707;
-  font-weight:700;
-}
+/* CONTROLES FLOTANTES */
+.music-toggle,.cart-dock{position:fixed;bottom:18px;z-index:96;border:1px solid rgba(233,196,118,.5);border-radius:999px;background:rgba(5,7,11,.9);color:#f2d9a6;padding:11px 15px;font:700 12px/1 Arial,sans-serif;letter-spacing:.05em;backdrop-filter:blur(8px);cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.28)}
+.music-toggle{left:18px;min-width:96px}.music-toggle.playing{background:rgba(38,29,14,.92);color:#ffe3aa}.cart-dock{right:18px}
+.cart-count{display:inline-flex;min-width:22px;height:22px;margin-left:7px;align-items:center;justify-content:center;border-radius:50%;background:#e9c476;color:#261707}
+.cart-panel{position:fixed;right:18px;bottom:76px;width:min(380px,calc(100vw - 36px));z-index:95;display:none;border:1px solid rgba(233,196,118,.45);border-radius:22px;background:linear-gradient(160deg,rgba(17,13,16,.98),rgba(5,9,17,.98));box-shadow:0 28px 78px rgba(0,0,0,.65);padding:18px}
+.cart-panel.open{display:block}.cart-line{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(233,196,118,.12);padding:8px 0;color:#d9c19b;font-size:14px}
+.cart-action{border:1px solid rgba(233,196,118,.35);border-radius:999px;background:rgba(233,196,118,.1);color:#f5e0b4;padding:9px 12px;cursor:pointer;text-decoration:none;font-size:13px}.cart-action.primary{background:linear-gradient(#f3d08a,#c99340);color:#261707;font-weight:700}
 
-/* ===== RESPONSIVE REAL ===== */
+/* TABLET */
 @media(max-width:1100px){
   .catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* CELULAR: mismo orden y misma estética, sin superposiciones agresivas */
 @media(max-width:700px){
-  .stage{height:310px}
-  #forest{
-    top:-72px;
-    height:calc(100% + 72px);
-    object-position:center center;
-  }
-  .brand-overlay{
-    top:13px;
-    left:14px;
-  }
-  .brand-overlay strong{font-size:28px}
-  .brand-overlay span{font-size:9px}
+  .site-header{padding:13px 12px 12px}
+  .site-brand{font-size:26px}
+  .site-brand-sub{font-size:8px;letter-spacing:.14em}
+
+  .stage{height:245px}
+  #forest{top:-20%;height:140%;object-position:center center}
+
   .artist-group-photo{
-    width:94%;
-    height:315px;
-    margin:-54px auto 0;
-    border-radius:18px 18px 0 0;
+    width:100%;
+    height:270px;
+    margin:0;
+    border-radius:0;
+    border-left:0;
+    border-right:0;
+    box-shadow:none;
   }
   .artist-group-photo img{object-position:center 18%}
-  .artist-title{width:94%}
-  .catalog-section{padding:38px 14px 48px}
-  .catalog-grid{grid-template-columns:1fr;gap:18px}
-  .shop-tools{gap:8px}
-  .filter{padding:10px 14px;font-size:11px}
-  .product-card{border-radius:16px}
-  .footer-grid{grid-template-columns:1fr}
-  .gallery-thumbs{grid-template-columns:repeat(4,1fr)}
+  .artist-title{width:100%;border-left:0;border-right:0}
+  .artist-title h2{font-size:25px}
+
+  .catalog-section{padding:34px 12px 46px}
+  .catalog-section h2{font-size:28px;letter-spacing:.05em}
+  .catalog-section .sub{font-size:14px;margin-bottom:22px}
+  .shop-tools{gap:7px;margin-bottom:20px}
+  .filter{padding:10px 12px;font-size:10px;letter-spacing:.08em}
+  .catalog-grid{grid-template-columns:1fr;gap:16px}
+  .product-card{border-radius:14px}
+  .photo-wrap{aspect-ratio:4/5}
+  .product-info{padding:16px}
   .price-row{align-items:flex-start;flex-direction:column}
-  .music-toggle,.cart-dock{
-    bottom:12px;
-    padding:10px 12px;
-    font-size:11px;
-  }
-  .music-toggle{left:12px}
-  .cart-dock{right:12px}
+
+  .artist-bio{margin:18px 12px 34px;padding:24px 14px}
+  .footer{padding:34px 18px 80px}
+  .footer-grid{grid-template-columns:1fr;gap:20px}
+  .gallery-thumbs{grid-template-columns:repeat(4,1fr)}
+
+  .music-toggle,.cart-dock{bottom:10px;padding:10px 11px;font-size:10px}
+  .music-toggle{left:10px}.cart-dock{right:10px}
+  .cart-panel{right:10px;bottom:62px;width:calc(100vw - 20px)}
 }
-</style></head><body><main class="hero" id="top"><section class="stage"><img id="forest" alt="Bosque de Le Petit Peuple de la Montagne"><div class="brand-overlay"><strong>Le Petit Peuple</strong><span>de la Montagne · Verito Gagliardi</span></div><div class="fireflies"><i class="firefly big" style="left:8%;top:24%"></i><i class="firefly" style="left:14%;top:46%;animation-delay:1s"></i><i class="firefly tiny" style="left:24%;top:18%;animation-delay:2s"></i><i class="firefly" style="left:70%;top:28%;animation-delay:3s"></i><i class="firefly big" style="left:78%;top:48%;animation-delay:2s"></i><i class="firefly" style="left:86%;top:22%;animation-delay:.5s"></i></div></section></main><div class="artist-photo artist-group-photo"><img id="veritoGroupPhoto" src="assets/ai/home.webp?v=20261001-hd-gallery" alt="Duendes de colección de Verito Gagliardi"><div class="group-fallback" id="groupFallback" aria-label="Colección de duendes de Verito Gagliardi"></div></div><section class="artist-title artist-intro" id="verito"><h2>Verito Gagliardi</h2><p>Duendes de colección</p></section><section class="catalog-section" id="catalogo"><h2>TIENDA / CATÁLOGO</h2><p class="sub">Duendes y trolls de colección, con carácter propio. Piezas únicas hechas a mano para coleccionistas y amantes de la fantasía artesanal.</p><div class="shop-tools"><button class="filter active" data-filter="all">TODOS</button><button class="filter" data-filter="duendes">DUENDES</button><button class="filter" data-filter="trolls">TROLLS</button><button class="filter" data-filter="promo">PROMOS</button></div><div class="catalog-grid" id="catalogGrid"></div></section><section class="artist-bio artist-bio-small"><h2>Verito Gagliardi</h2><h3>Artesana y pintora</h3><p>Obras hiperrealistas y de fantasía.</p><p>Piezas únicas, modeladas y terminadas a mano.</p><p>Duendes y trolls de colección.</p></section><footer class="footer" id="footer"><div class="footer-grid"><div><h3>Verito Gagliardi</h3><p>Duendes de colección. Piezas únicas, realizadas a mano.</p></div><div><h3>Contacto</h3><p>Instagram: <a href="https://instagram.com/lepetit_peuple_delamontagne" target="_blank">@lepetit_peuple_delamontagne</a></p><p>WhatsApp: <a href="https://wa.me/541124050054" target="_blank">+54 11 2405-0054</a></p></div><div><h3>Compras</h3><ul><li>Envíos a todo el país</li><li>Consultas por disponibilidad</li><li>Encargos personalizados</li><li>Medios de pago: <strong>A CONVENIR</strong></li></ul></div><div><h3>Información</h3><ul><li><a href="#catalogo">Catálogo</a></li></ul></div></div><div class="copy">© 2026 Le Petit Peuple de la Montagne · Arte · Naturaleza · Imaginación<br><small>Música: Marc-Lautenbacher & Guy Simard · guitarra y flauta nativa · CC BY-SA 4.0 · Ambiente de bosque: dominio público</small></div></footer><audio id="forestMusic" preload="auto" loop autoplay playsinline><source src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Native-American-flute%C2%A9Marc-Lautenbacher_music_Guy-Simard_flute.ogg" type="audio/ogg"></audio><audio id="forestAmbience" preload="auto" loop autoplay playsinline><source src="https://upload.wikimedia.org/wikipedia/commons/0/0a/20090610_0_ambience.ogg" type="audio/ogg"></audio><button class="music-toggle" id="musicToggle" type="button" aria-label="Activar o desactivar música">♪ Música</button><button class="cart-dock" id="cartDock">Carrito <span class="cart-count" id="cartCount">0</span></button><aside class="cart-panel" id="cartPanel"><h3>Carrito del bosque</h3><div id="cartList"></div><p id="cartTotal"></p><a class="cart-action primary" id="cartConsult" href="https://wa.me/541124050054" target="_blank">Consultar compra</a> <button class="cart-action" id="cartClear">Vaciar</button></aside><div class="modal-shell" id="modalShell"><article class="modal"><button class="close-modal" id="closeModal">×</button><p class="modal-kicker">Le Petit Peuple</p><h2 id="modalTitle"></h2><div id="modalCustom"></div><p id="modalText"></p><p id="modalSmall"></p><div class="actions" id="modalActions"></div></article></div><script>(async function(){const W='https://wa.me/541124050054?text=';const forest=document.getElementById('forest'),grid=document.getElementById('catalogGrid'),shell=document.getElementById('modalShell'),title=document.getElementById('modalTitle'),txt=document.getElementById('modalText'),small=document.getElementById('modalSmall'),custom=document.getElementById('modalCustom'),actions=document.getElementById('modalActions'),IM=window.NIKITA_CATALOG_IMAGES||{};async function join(a){let o=[];for(const p of a){const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error(p);o.push((await r.text()).trim())}return o.join('')}try{forest.onload=()=>forest.classList.add('ready');forest.src='data:image/avif;base64,'+await join(Array.from({length:8},(_,i)=>`assets/forest4k${i}.txt?v=20260908-clean4k-1`))}catch(e){}const groupPhoto=document.getElementById('veritoGroupPhoto'),groupFallback=document.getElementById('groupFallback');if(groupFallback){const ids=['pieteremma','pieter','amatista','francis','emma','harry','trollcombo','trolls'];groupFallback.innerHTML=ids.filter(id=>IM[id]).map(id=>'<img src="'+IM[id]+'" alt="">').join('');if(groupPhoto)groupPhoto.addEventListener('error',()=>{groupPhoto.style.display='none';groupFallback.style.display='grid'})}const G={pieteremma:['assets/gallery/pieteremma/01.webp','assets/gallery/pieteremma/02.webp','assets/gallery/pieteremma/03.webp','assets/gallery/pieteremma/04.webp','assets/gallery/pieteremma/05.webp'],pieter:['assets/gallery/pieter/01.webp','assets/gallery/pieter/02.webp','assets/gallery/pieter/03.webp','assets/gallery/pieter/04.webp'],amatista:['assets/gallery/amatista/01.webp','assets/gallery/amatista/02.webp','assets/gallery/amatista/03.webp','assets/gallery/amatista/04.webp'],francis:['assets/gallery/francis/01.webp','assets/gallery/francis/02.webp','assets/gallery/francis/03.webp'],emma:['assets/gallery/emma/01.webp','assets/gallery/emma/02.webp','assets/gallery/emma/03.webp'],harry:['assets/gallery/harry/01.webp','assets/gallery/harry/02.webp','assets/gallery/harry/03.webp','assets/gallery/harry/04.webp','assets/gallery/harry/05.webp','assets/gallery/harry/06.webp','assets/gallery/harry/07.webp'],trollcombo:['assets/gallery/trollcombo/01.webp','assets/gallery/trollcombo/02.webp','assets/gallery/trollcombo/03.webp','assets/gallery/trollcombo/04.webp','assets/gallery/trollcombo/05.webp','assets/gallery/trollcombo/06.webp','assets/gallery/trollcombo/07.webp','assets/gallery/trollcombo/08.webp'],trolls:['assets/gallery/trolls/01.webp','assets/gallery/trolls/02.webp','assets/gallery/trolls/03.webp','assets/gallery/trolls/04.webp','assets/gallery/trolls/05.webp','assets/gallery/trolls/06.webp','assets/gallery/trolls/07.webp','assets/gallery/trolls/08.webp']};const products=[{id:'pieteremma',n:'Pieter + Emma',p:'$70.000',d:'Pareja de colección · Pieter 40 cm + gorro · Emma 30 cm · Articulados · 100% hechos a mano · Presencia y carácter.',cat:'duendes',promo:true},{id:'pieter',n:'Pieter',p:'$40.000',d:'40 cm + gorro · Articulado · 100% hecho a mano · Pieza de colección con fuerte presencia.',cat:'duendes',promo:true},{id:'amatista',n:'Amatista',p:'$40.000',d:'30 cm · Collar de piedra amatista incluido · Pieza artesanal de colección, sobria y singular.',cat:'duendes',promo:false},{id:'francis',n:'Francis',p:'$35.000',d:'25 cm · Protector · Incluye bastón y ardilla · Pieza narrativa de colección.',cat:'duendes',promo:false},{id:'emma',n:'Emma',p:'$35.000',d:'30 cm · Pieza única · Hecha 100% a mano · Expresiva y de colección.',cat:'duendes',promo:false},{id:'harry',n:'Mini Harry',p:'$30.000',d:'20 cm + gorro · Articulado y flexible · Hecho a mano · Compacto, sólido y con personalidad.',cat:'duendes',promo:false},{id:'trollcombo',n:'Troll Froudiano + duende',p:'$120.000',d:'Troll 70 cm + duende 20 cm + gorro 10 cm · Porcelana fría · Hechos a mano · Conjunto de gran presencia para coleccionistas.',cat:'trolls',promo:true},{id:'trolls',n:'Trolls Froudianos',p:'$90.000 c/u',d:'70 y 80 cm · Hechos totalmente a mano · Piezas de gran presencia visual · Descuento llevando varias piezas.',cat:'trolls',promo:true}];function cover(p){return 'assets/ai/'+p.id+'.webp?v=20261001-hd-gallery'}function picture(p){return '<img src="'+cover(p)+'" alt="'+p.n+'" loading="lazy">'}function card(p){const count=(G[p.id]||[]).length+1;return '<article class="product-card" data-id="'+p.id+'"><div class="photo-wrap" data-view="'+p.id+'">'+picture(p)+(p.promo?'<span class="promo-badge">PROMO OCTUBRE</span>':'')+'<span class="photo-count">'+count+' FOTOS</span></div><div class="product-info"><div class="product-meta">PIEZA DE COLECCIÓN · HECHA A MANO</div><h3>'+p.n+'</h3><p>'+p.d+'</p><div class="price-row"><strong class="price">'+p.p+'</strong><button class="btn secondary" data-view="'+p.id+'">VER FOTOS</button></div><div class="actions" style="margin-top:10px"><button class="btn" data-add="'+p.id+'">AGREGAR</button></div></div></article>'}function renderProducts(list){grid.innerHTML=list.map(card).join('')}renderProducts(products);document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.filter;renderProducts(f==='all'?products:f==='promo'?products.filter(p=>p.promo):products.filter(p=>p.cat===f))}));const cartPanel=document.getElementById('cartPanel'),cartCount=document.getElementById('cartCount'),cartList=document.getElementById('cartList'),cartTotal=document.getElementById('cartTotal'),cartConsult=document.getElementById('cartConsult');let cart=JSON.parse(localStorage.getItem('lppm-cart-oct')||'[]');function get(id){return products.find(p=>p.id===id)}function renderCart(){cartCount.textContent=cart.length;cartList.innerHTML=cart.length?cart.map((id,i)=>{let p=get(id);return `<div class="cart-line"><span>${p.n}<br><small>${p.p}</small></span><button class="cart-action" data-remove="${i}">Quitar</button></div>`}).join(''):'<p>El carrito está vacío.</p>';cartTotal.textContent=cart.length?'Piezas para consultar: '+cart.length:'Agregá una pieza para consultar.';cartConsult.href=W+encodeURIComponent('Hola, quiero consultar por: '+cart.map(id=>get(id).n+' '+get(id).p).join(', '));localStorage.setItem('lppm-cart-oct',JSON.stringify(cart))}function add(id){cart.push(id);renderCart();cartPanel.classList.add('open')}function open(id){let p=get(id);if(!p)return;const imgs=[cover(p),...(G[p.id]||[])];custom.innerHTML='<div class="gallery-main"><img id="modalMainPhoto" src="'+imgs[0]+'" alt="'+p.n+'"></div><div class="gallery-thumbs">'+imgs.map((src,i)=>'<button class="gallery-thumb" data-gallery-src="'+src+'" aria-label="Foto '+(i+1)+' de '+p.n+'"><img src="'+src+'" alt="" loading="lazy"></button>').join('')+'</div>';title.textContent=p.n;txt.textContent=p.d;small.innerHTML='<strong class="price">'+p.p+'</strong>';actions.innerHTML='<button class="btn" data-add="'+p.id+'">AGREGAR AL CARRITO</button><button class="btn secondary" id="waBtn">CONSULTAR POR WHATSAPP</button>';document.getElementById('waBtn').onclick=()=>window.open(W+encodeURIComponent('Hola, quiero consultar por '+p.n+' '+p.p),'_blank');shell.classList.add('open')}function info(k){let data={historia:['La Historia','Le Petit Peuple de la Montagne nace como un refugio imaginario: criaturas hechas a mano, con gestos propios, ropa diminuta y una presencia que parece venir de otro tiempo.'],magia:['Magia','La magia está en que cada figura parece guardar carácter, humor y un pequeño secreto.'],arte:['Arte','Cada rostro, textura, cabello y detalle está trabajado a mano. Por eso ninguna pieza se repite.'],montana:['Montaña','Donde termina el mapa, empieza el bosque.'],hogar:['Hogar','Cada pieza busca su casa.']};title.textContent=data[k][0];txt.textContent=data[k][1];small.textContent='';custom.innerHTML='';actions.innerHTML='<button class="btn" onclick="document.getElementById(\'catalogo\').scrollIntoView({behavior:\'smooth\'});document.getElementById(\'modalShell\').classList.remove(\'open\')">Ver catálogo</button>';shell.classList.add('open')}function search(){title.textContent='Buscar en el bosque';txt.textContent='Buscá por nombre: Pieter, Emma, Amatista, Francis, Harry, troll o precio.';small.textContent='';custom.innerHTML='<form class="searchbox"><input id="q" placeholder="Ej: Amatista"><button>Buscar</button></form><div id="results"></div>';actions.innerHTML='';shell.classList.add('open');custom.querySelector('form').onsubmit=e=>{e.preventDefault();let q=document.getElementById('q').value.toLowerCase();let r=products.filter(p=>(p.n+' '+p.d+' '+p.p).toLowerCase().includes(q));document.getElementById('results').innerHTML=r.length?r.map(p=>`<button class="cart-action" data-view="${p.id}">${p.n} · ${p.p}</button>`).join(' '):'No encontré ese producto.'}}document.body.addEventListener('click',e=>{let gt=e.target.closest('[data-gallery-src]');if(gt){e.preventDefault();let main=document.getElementById('modalMainPhoto');if(main)main.src=gt.dataset.gallerySrc}let v=e.target.closest('[data-view]');if(v){e.preventDefault();open(v.dataset.view)}let a=e.target.closest('[data-add]');if(a){e.preventDefault();add(a.dataset.add)}let c=e.target.closest('.product-card');if(c&&!e.target.closest('button'))open(c.dataset.id);let rm=e.target.closest('[data-remove]');if(rm){cart.splice(+rm.dataset.remove,1);renderCart()}});document.querySelectorAll('[data-modal]').forEach(b=>b.onclick=()=>info(b.dataset.modal));document.querySelectorAll('[data-action]').forEach(b=>b.onclick=()=>{let a=b.dataset.action;if(a==='top')scrollTo({top:0,behavior:'smooth'});if(a==='catalog')document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});if(a==='footer')document.getElementById('footer').scrollIntoView({behavior:'smooth'});if(a==='search')search()});document.getElementById('closeModal').onclick=()=>shell.classList.remove('open');shell.onclick=e=>{if(e.target===shell)shell.classList.remove('open')};document.getElementById('cartDock').onclick=()=>cartPanel.classList.toggle('open');document.getElementById('cartClear').onclick=()=>{cart=[];renderCart()};
+</style></head><body><header class="site-header"><div class="site-brand">Le Petit Peuple de la Montagne</div><div class="site-brand-sub">Verito Gagliardi · Duendes de colección</div></header><main class="hero" id="top"><section class="stage"><img id="forest" alt="Bosque de Le Petit Peuple de la Montagne"><div class="fireflies"><i class="firefly big" style="left:8%;top:24%"></i><i class="firefly" style="left:14%;top:46%;animation-delay:1s"></i><i class="firefly tiny" style="left:24%;top:18%;animation-delay:2s"></i><i class="firefly" style="left:70%;top:28%;animation-delay:3s"></i><i class="firefly big" style="left:78%;top:48%;animation-delay:2s"></i><i class="firefly" style="left:86%;top:22%;animation-delay:.5s"></i></div></section></main><div class="artist-photo artist-group-photo"><img id="veritoGroupPhoto" src="assets/ai/home.webp?v=20261001-hd-gallery" alt="Duendes de colección de Verito Gagliardi"><div class="group-fallback" id="groupFallback" aria-label="Colección de duendes de Verito Gagliardi"></div></div><section class="artist-title artist-intro" id="verito"><h2>Verito Gagliardi</h2><p>Duendes de colección</p></section><section class="catalog-section" id="catalogo"><h2>TIENDA / CATÁLOGO</h2><p class="sub">Duendes y trolls de colección, con carácter propio. Piezas únicas hechas a mano para coleccionistas y amantes de la fantasía artesanal.</p><div class="shop-tools"><button class="filter active" data-filter="all">TODOS</button><button class="filter" data-filter="duendes">DUENDES</button><button class="filter" data-filter="trolls">TROLLS</button><button class="filter" data-filter="promo">PROMOS</button></div><div class="catalog-grid" id="catalogGrid"></div></section><section class="artist-bio artist-bio-small"><h2>Verito Gagliardi</h2><h3>Artesana y pintora</h3><p>Obras hiperrealistas y de fantasía.</p><p>Piezas únicas, modeladas y terminadas a mano.</p><p>Duendes y trolls de colección.</p></section><footer class="footer" id="footer"><div class="footer-grid"><div><h3>Verito Gagliardi</h3><p>Duendes de colección. Piezas únicas, realizadas a mano.</p></div><div><h3>Contacto</h3><p>Instagram: <a href="https://instagram.com/lepetit_peuple_delamontagne" target="_blank">@lepetit_peuple_delamontagne</a></p><p>WhatsApp: <a href="https://wa.me/541124050054" target="_blank">+54 11 2405-0054</a></p></div><div><h3>Compras</h3><ul><li>Envíos a todo el país</li><li>Consultas por disponibilidad</li><li>Encargos personalizados</li><li>Medios de pago: <strong>A CONVENIR</strong></li></ul></div><div><h3>Información</h3><ul><li><a href="#catalogo">Catálogo</a></li></ul></div></div><div class="copy">© 2026 Le Petit Peuple de la Montagne · Arte · Naturaleza · Imaginación<br><small>Música: Marc-Lautenbacher & Guy Simard · guitarra y flauta nativa · CC BY-SA 4.0 · Ambiente de bosque: dominio público</small></div></footer><audio id="forestMusic" preload="auto" loop autoplay playsinline><source src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Native-American-flute%C2%A9Marc-Lautenbacher_music_Guy-Simard_flute.ogg" type="audio/ogg"></audio><audio id="forestAmbience" preload="auto" loop autoplay playsinline><source src="https://upload.wikimedia.org/wikipedia/commons/0/0a/20090610_0_ambience.ogg" type="audio/ogg"></audio><button class="music-toggle" id="musicToggle" type="button" aria-label="Activar o desactivar música">♪ Música</button><button class="cart-dock" id="cartDock">Carrito <span class="cart-count" id="cartCount">0</span></button><aside class="cart-panel" id="cartPanel"><h3>Carrito del bosque</h3><div id="cartList"></div><p id="cartTotal"></p><a class="cart-action primary" id="cartConsult" href="https://wa.me/541124050054" target="_blank">Consultar compra</a> <button class="cart-action" id="cartClear">Vaciar</button></aside><div class="modal-shell" id="modalShell"><article class="modal"><button class="close-modal" id="closeModal">×</button><p class="modal-kicker">Le Petit Peuple</p><h2 id="modalTitle"></h2><div id="modalCustom"></div><p id="modalText"></p><p id="modalSmall"></p><div class="actions" id="modalActions"></div></article></div><script>(async function(){const W='https://wa.me/541124050054?text=';const forest=document.getElementById('forest'),grid=document.getElementById('catalogGrid'),shell=document.getElementById('modalShell'),title=document.getElementById('modalTitle'),txt=document.getElementById('modalText'),small=document.getElementById('modalSmall'),custom=document.getElementById('modalCustom'),actions=document.getElementById('modalActions'),IM=window.NIKITA_CATALOG_IMAGES||{};async function join(a){let o=[];for(const p of a){const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error(p);o.push((await r.text()).trim())}return o.join('')}try{forest.onload=()=>forest.classList.add('ready');forest.src='data:image/avif;base64,'+await join(Array.from({length:8},(_,i)=>`assets/forest4k${i}.txt?v=20260908-clean4k-1`))}catch(e){}const groupPhoto=document.getElementById('veritoGroupPhoto'),groupFallback=document.getElementById('groupFallback');if(groupFallback){const ids=['pieteremma','pieter','amatista','francis','emma','harry','trollcombo','trolls'];groupFallback.innerHTML=ids.filter(id=>IM[id]).map(id=>'<img src="'+IM[id]+'" alt="">').join('');if(groupPhoto)groupPhoto.addEventListener('error',()=>{groupPhoto.style.display='none';groupFallback.style.display='grid'})}const G={pieteremma:['assets/gallery/pieteremma/01.webp','assets/gallery/pieteremma/02.webp','assets/gallery/pieteremma/03.webp','assets/gallery/pieteremma/04.webp','assets/gallery/pieteremma/05.webp'],pieter:['assets/gallery/pieter/01.webp','assets/gallery/pieter/02.webp','assets/gallery/pieter/03.webp','assets/gallery/pieter/04.webp'],amatista:['assets/gallery/amatista/01.webp','assets/gallery/amatista/02.webp','assets/gallery/amatista/03.webp','assets/gallery/amatista/04.webp'],francis:['assets/gallery/francis/01.webp','assets/gallery/francis/02.webp','assets/gallery/francis/03.webp'],emma:['assets/gallery/emma/01.webp','assets/gallery/emma/02.webp','assets/gallery/emma/03.webp'],harry:['assets/gallery/harry/01.webp','assets/gallery/harry/02.webp','assets/gallery/harry/03.webp','assets/gallery/harry/04.webp','assets/gallery/harry/05.webp','assets/gallery/harry/06.webp','assets/gallery/harry/07.webp'],trollcombo:['assets/gallery/trollcombo/01.webp','assets/gallery/trollcombo/02.webp','assets/gallery/trollcombo/03.webp','assets/gallery/trollcombo/04.webp','assets/gallery/trollcombo/05.webp','assets/gallery/trollcombo/06.webp','assets/gallery/trollcombo/07.webp','assets/gallery/trollcombo/08.webp'],trolls:['assets/gallery/trolls/01.webp','assets/gallery/trolls/02.webp','assets/gallery/trolls/03.webp','assets/gallery/trolls/04.webp','assets/gallery/trolls/05.webp','assets/gallery/trolls/06.webp','assets/gallery/trolls/07.webp','assets/gallery/trolls/08.webp']};const products=[{id:'pieteremma',n:'Pieter + Emma',p:'$70.000',d:'Pareja de colección · Pieter 40 cm + gorro · Emma 30 cm · Articulados · 100% hechos a mano · Presencia y carácter.',cat:'duendes',promo:true},{id:'pieter',n:'Pieter',p:'$40.000',d:'40 cm + gorro · Articulado · 100% hecho a mano · Pieza de colección con fuerte presencia.',cat:'duendes',promo:true},{id:'amatista',n:'Amatista',p:'$40.000',d:'30 cm · Collar de piedra amatista incluido · Pieza artesanal de colección, sobria y singular.',cat:'duendes',promo:false},{id:'francis',n:'Francis',p:'$35.000',d:'25 cm · Protector · Incluye bastón y ardilla · Pieza narrativa de colección.',cat:'duendes',promo:false},{id:'emma',n:'Emma',p:'$35.000',d:'30 cm · Pieza única · Hecha 100% a mano · Expresiva y de colección.',cat:'duendes',promo:false},{id:'harry',n:'Mini Harry',p:'$30.000',d:'20 cm + gorro · Articulado y flexible · Hecho a mano · Compacto, sólido y con personalidad.',cat:'duendes',promo:false},{id:'trollcombo',n:'Troll Froudiano + duende',p:'$120.000',d:'Troll 70 cm + duende 20 cm + gorro 10 cm · Porcelana fría · Hechos a mano · Conjunto de gran presencia para coleccionistas.',cat:'trolls',promo:true},{id:'trolls',n:'Trolls Froudianos',p:'$90.000 c/u',d:'70 y 80 cm · Hechos totalmente a mano · Piezas de gran presencia visual · Descuento llevando varias piezas.',cat:'trolls',promo:true}];function cover(p){return 'assets/ai/'+p.id+'.webp?v=20261001-hd-gallery'}function picture(p){return '<img src="'+cover(p)+'" alt="'+p.n+'" loading="lazy">'}function card(p){const count=(G[p.id]||[]).length+1;return '<article class="product-card" data-id="'+p.id+'"><div class="photo-wrap" data-view="'+p.id+'">'+picture(p)+(p.promo?'<span class="promo-badge">PROMO OCTUBRE</span>':'')+'<span class="photo-count">'+count+' FOTOS</span></div><div class="product-info"><div class="product-meta">PIEZA DE COLECCIÓN · HECHA A MANO</div><h3>'+p.n+'</h3><p>'+p.d+'</p><div class="price-row"><strong class="price">'+p.p+'</strong><button class="btn secondary" data-view="'+p.id+'">VER FOTOS</button></div><div class="actions" style="margin-top:10px"><button class="btn" data-add="'+p.id+'">AGREGAR</button></div></div></article>'}function renderProducts(list){grid.innerHTML=list.map(card).join('')}renderProducts(products);document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.filter;renderProducts(f==='all'?products:f==='promo'?products.filter(p=>p.promo):products.filter(p=>p.cat===f))}));const cartPanel=document.getElementById('cartPanel'),cartCount=document.getElementById('cartCount'),cartList=document.getElementById('cartList'),cartTotal=document.getElementById('cartTotal'),cartConsult=document.getElementById('cartConsult');let cart=JSON.parse(localStorage.getItem('lppm-cart-oct')||'[]');function get(id){return products.find(p=>p.id===id)}function renderCart(){cartCount.textContent=cart.length;cartList.innerHTML=cart.length?cart.map((id,i)=>{let p=get(id);return `<div class="cart-line"><span>${p.n}<br><small>${p.p}</small></span><button class="cart-action" data-remove="${i}">Quitar</button></div>`}).join(''):'<p>El carrito está vacío.</p>';cartTotal.textContent=cart.length?'Piezas para consultar: '+cart.length:'Agregá una pieza para consultar.';cartConsult.href=W+encodeURIComponent('Hola, quiero consultar por: '+cart.map(id=>get(id).n+' '+get(id).p).join(', '));localStorage.setItem('lppm-cart-oct',JSON.stringify(cart))}function add(id){cart.push(id);renderCart();cartPanel.classList.add('open')}function open(id){let p=get(id);if(!p)return;const imgs=[cover(p),...(G[p.id]||[])];custom.innerHTML='<div class="gallery-main"><img id="modalMainPhoto" src="'+imgs[0]+'" alt="'+p.n+'"></div><div class="gallery-thumbs">'+imgs.map((src,i)=>'<button class="gallery-thumb" data-gallery-src="'+src+'" aria-label="Foto '+(i+1)+' de '+p.n+'"><img src="'+src+'" alt="" loading="lazy"></button>').join('')+'</div>';title.textContent=p.n;txt.textContent=p.d;small.innerHTML='<strong class="price">'+p.p+'</strong>';actions.innerHTML='<button class="btn" data-add="'+p.id+'">AGREGAR AL CARRITO</button><button class="btn secondary" id="waBtn">CONSULTAR POR WHATSAPP</button>';document.getElementById('waBtn').onclick=()=>window.open(W+encodeURIComponent('Hola, quiero consultar por '+p.n+' '+p.p),'_blank');shell.classList.add('open')}function info(k){let data={historia:['La Historia','Le Petit Peuple de la Montagne nace como un refugio imaginario: criaturas hechas a mano, con gestos propios, ropa diminuta y una presencia que parece venir de otro tiempo.'],magia:['Magia','La magia está en que cada figura parece guardar carácter, humor y un pequeño secreto.'],arte:['Arte','Cada rostro, textura, cabello y detalle está trabajado a mano. Por eso ninguna pieza se repite.'],montana:['Montaña','Donde termina el mapa, empieza el bosque.'],hogar:['Hogar','Cada pieza busca su casa.']};title.textContent=data[k][0];txt.textContent=data[k][1];small.textContent='';custom.innerHTML='';actions.innerHTML='<button class="btn" onclick="document.getElementById(\'catalogo\').scrollIntoView({behavior:\'smooth\'});document.getElementById(\'modalShell\').classList.remove(\'open\')">Ver catálogo</button>';shell.classList.add('open')}function search(){title.textContent='Buscar en el bosque';txt.textContent='Buscá por nombre: Pieter, Emma, Amatista, Francis, Harry, troll o precio.';small.textContent='';custom.innerHTML='<form class="searchbox"><input id="q" placeholder="Ej: Amatista"><button>Buscar</button></form><div id="results"></div>';actions.innerHTML='';shell.classList.add('open');custom.querySelector('form').onsubmit=e=>{e.preventDefault();let q=document.getElementById('q').value.toLowerCase();let r=products.filter(p=>(p.n+' '+p.d+' '+p.p).toLowerCase().includes(q));document.getElementById('results').innerHTML=r.length?r.map(p=>`<button class="cart-action" data-view="${p.id}">${p.n} · ${p.p}</button>`).join(' '):'No encontré ese producto.'}}document.body.addEventListener('click',e=>{let gt=e.target.closest('[data-gallery-src]');if(gt){e.preventDefault();let main=document.getElementById('modalMainPhoto');if(main)main.src=gt.dataset.gallerySrc}let v=e.target.closest('[data-view]');if(v){e.preventDefault();open(v.dataset.view)}let a=e.target.closest('[data-add]');if(a){e.preventDefault();add(a.dataset.add)}let c=e.target.closest('.product-card');if(c&&!e.target.closest('button'))open(c.dataset.id);let rm=e.target.closest('[data-remove]');if(rm){cart.splice(+rm.dataset.remove,1);renderCart()}});document.querySelectorAll('[data-modal]').forEach(b=>b.onclick=()=>info(b.dataset.modal));document.querySelectorAll('[data-action]').forEach(b=>b.onclick=()=>{let a=b.dataset.action;if(a==='top')scrollTo({top:0,behavior:'smooth'});if(a==='catalog')document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});if(a==='footer')document.getElementById('footer').scrollIntoView({behavior:'smooth'});if(a==='search')search()});document.getElementById('closeModal').onclick=()=>shell.classList.remove('open');shell.onclick=e=>{if(e.target===shell)shell.classList.remove('open')};document.getElementById('cartDock').onclick=()=>cartPanel.classList.toggle('open');document.getElementById('cartClear').onclick=()=>{cart=[];renderCart()};
 /* music ambient */
 const forestMusic=document.getElementById('forestMusic'),
       forestAmbience=document.getElementById('forestAmbience'),
